@@ -13,19 +13,20 @@ function getTapeSegment(tape: TapeClass): TapeCell[] {
   const cells: TapeCell[] = []
   let current: TapeCell | null = tape.head
 
-  // dodaj po lewej
+  //fill to the left
   for (let i = 0; i < Math.floor(visibleCells / 2); i++) {
     if (!current.left)
      current.left = new TapeCell('', null, current)
     current = current.left
   }
 
-  // teraz current jest na lewej krawędzi
+  //fill to the right
   for (let i = 0; i < visibleCells; i++) {
     if (!current)
      break
     cells.push(current)
-    if (!current.right) current.right = new TapeCell('', current, null)
+    if (!current.right)
+      current.right = new TapeCell('', current, null)
     current = current.right
   }
 
@@ -60,21 +61,23 @@ function writeSymbol(tapeIndex: number) {
     <button @click="removeTape">Usuń taśmę</button>
   <div class="tape-container">
     <div v-for="(tape, tIndex) in machine.tapes" :key="tIndex" class="tape">
-      <div class="tape-track">
+      <div class="tape-track-wrapper">
+        <transition-group name="slide" tag="div" class="tape-track">
         <div
           v-for="(cell, index) in getTapeSegment(tape)"
-          :key="index"
+          :key="cell.id"
           class="cell"
           :class="{ active: cell === tape.head }"
         >
           {{ cell.value }}
         </div>
+        </transition-group>
       </div>
       <div class="controls">
-        <button @click="moveLeft(tIndex)">⬅️ Lewo</button>
-        <button @click="moveRight(tIndex)">➡️ Prawo</button>
+        <button @click="moveLeft(tIndex)">Lewo</button>
+        <button @click="moveRight(tIndex)">Prawo</button>
         <input v-model="symbols[tIndex]" maxlength="1" />
-        <button @click="writeSymbol(tIndex)">✍️ Zapisz</button>
+        <button @click="writeSymbol(tIndex)">Zapisz</button>
       </div>
     </div>
   </div>

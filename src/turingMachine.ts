@@ -1,9 +1,13 @@
+let cellIdCounter = 0
+
 export class TapeCell {
+  id: number
   value: string
   left: TapeCell | null
   right: TapeCell | null
 
   constructor(value: string = '', left: TapeCell | null = null, right: TapeCell | null = null) {
+    this.id = cellIdCounter++
     this.value = value
     this.left = left
     this.right = right

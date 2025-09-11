@@ -9,6 +9,18 @@
   overflow: hidden;
 }
 
+.slide-move {
+  transition: transform 0.5s ease;
+}
+
+.slide-leave-active {
+  position: absolute;
+}
+
+.slide-leave-to {
+  opacity: 0;
+}
+
 .tape-track {
   display: flex;
 }
