@@ -2,8 +2,10 @@
 import "../styles/tape.css"
 import { reactive, ref } from 'vue'
 import { TuringMachine, Tape as TapeClass, TapeCell } from '../turingMachine'
+import { TapesCounterStore } from "../stores/store"
+const tapeCounter = TapesCounterStore()
 
-const numTapes = 1
+let numTapes = 1
 const machine = reactive(new TuringMachine(numTapes))
 const symbols = ref<string[]>(Array(numTapes).fill('1'))
 
@@ -35,12 +37,16 @@ function getTapeSegment(tape: TapeClass): TapeCell[] {
 
 function addTape() {
     machine.tapes.push(new TapeClass())
+    numTapes += 1
+    tapeCounter.setNumber(numTapes)
 }
 
 function removeTape() {
     if(machine.tapes.length <= 1)
         return
     machine.tapes.pop()
+    numTapes -= 1;
+    tapeCounter.setNumber(numTapes)
 }
 
 function moveLeft(tapeIndex: number) {
@@ -64,7 +70,7 @@ function writeSymbol(tapeIndex: number) {
       <div class="tape-track-wrapper">
         <transition-group name="slide" tag="div" class="tape-track">
         <div
-          v-for="(cell, index) in getTapeSegment(tape)"
+          v-for="(cell) in getTapeSegment(tape)"
           :key="cell.id"
           class="cell"
           :class="{ active: cell === tape.head }"
