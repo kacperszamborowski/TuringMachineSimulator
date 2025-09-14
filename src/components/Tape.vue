@@ -63,8 +63,8 @@ function writeSymbol(tapeIndex: number) {
 </script>
 
 <template>
-    <button @click="addTape">Dodaj taśmę</button>
-    <button @click="removeTape">Usuń taśmę</button>
+    <button @click="addTape">{{ $t("addTape") }}</button>
+    <button @click="removeTape">{{ $t("removeTape") }}</button>
   <div class="tape-container">
     <div v-for="(tape, tIndex) in machine.tapes" :key="tIndex" class="tape">
       <div class="tape-track-wrapper">

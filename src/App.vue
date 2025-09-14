@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LanguagueChoice from './components/LanguagueChoice.vue';
 import Tape from './components/Tape.vue'
 import CodeEditor from './components/CodeEditor.vue';
 import "./styles/app.css"
@@ -6,7 +7,8 @@ import "./styles/app.css"
 
 <template>
   <main class="app">
-    <h1>Symulator maszyny Turinga</h1>
+    <LanguagueChoice />
+    <h1>{{ $t("header")}}</h1>
     <Tape />
     <CodeEditor />
   </main>
