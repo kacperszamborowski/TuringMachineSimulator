@@ -8,7 +8,7 @@ import "./styles/app.css"
 <template>
   <main class="app">
     <LanguagueChoice />
-    <h1>{{ $t("header")}}</h1>
+    <h1>{{ $t("header") }}</h1>
     <Tape />
     <CodeEditor />
   </main>

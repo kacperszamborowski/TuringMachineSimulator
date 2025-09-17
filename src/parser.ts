@@ -3,13 +3,17 @@ export interface Rule {
   readSymbols: string[]
   nextState: string
   writeSymbols: string[]
-  moves: ("L" | "R" | "N")[]
+  moves: ("L" | "R" | "S")[]
+}
+
+function handleBlank(s: string): string {
+  return s === "_" ? "" : s
 }
 
 export function parseProgram(code: string, numTapes: number): Rule[] {
   const rules: Rule[] = []
   const lines = code.split("\n")
-  let lineNumber : number = 0;
+  let lineNumber: number = 0;
 
   for (const line of lines) {
     lineNumber++;
@@ -27,7 +31,7 @@ export function parseProgram(code: string, numTapes: number): Rule[] {
 
     const left = parts[0].trim().split(",")
     const currentState = left[0]
-    const readSymbols = left.slice(1)
+    const readSymbols = left.slice(1).map(handleBlank)
 
     if (readSymbols.length !== numTapes) {
       throw new Error(`Niepoprawna liczba symboli wejściowych w linii ${lineNumber}`)
@@ -35,8 +39,8 @@ export function parseProgram(code: string, numTapes: number): Rule[] {
 
     const right = parts[1].trim().split(",")
     const nextState = right[0]
-    const writeSymbols = right.slice(1, 1 + numTapes)
-    const moves = right.slice(1 + numTapes) as ("L" | "R" | "N")[]
+    const writeSymbols = right.slice(1, 1 + numTapes).map(handleBlank)
+    const moves = right.slice(1 + numTapes) as ("L" | "R" | "S")[]
 
     if (writeSymbols.length !== numTapes || moves.length !== numTapes) {
       throw new Error(
@@ -45,7 +49,7 @@ export function parseProgram(code: string, numTapes: number): Rule[] {
     }
 
     for (const move of moves) {
-      if (!["L", "R", "N"].includes(move)) {
+      if (!["L", "R", "S"].includes(move)) {
         throw new Error(`Niepoprawny ruch "${move}" w linii: ${lineNumber}`)
       }
     }

@@ -48,12 +48,8 @@ const tapeSegments = computed(() =>
     <div v-for="(cells, tIndex) in tapeSegments" :key="tIndex" class="tape">
       <div class="tape-track-wrapper">
         <transition-group name="slide" tag="div" class="tape-track">
-          <div
-            v-for="cell in cells"
-            :key="cell.id"
-            class="cell"
-            :class="{ active: cell === machineStore.machine.tapes[tIndex].head }"
-          >
+          <div v-for="cell in cells" :key="cell.id" class="cell"
+            :class="{ active: cell === machineStore.machine.tapes[tIndex].head }">
             {{ cell.value }}
           </div>
         </transition-group>
