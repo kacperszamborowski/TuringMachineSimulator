@@ -6,11 +6,18 @@ export interface Rule {
   moves: ("L" | "R" | "S")[]
 }
 
+export interface ParseResult {
+  success: boolean
+  rules?: Rule[]
+  errorCode?: string
+  lineNumber?: number
+}
+
 function handleBlank(s: string): string {
   return s === "_" ? "" : s
 }
 
-export function parseProgram(code: string, numTapes: number): Rule[] {
+export function parseProgram(code: string, numTapes: number): ParseResult {
   const rules: Rule[] = []
   const lines = code.split("\n")
   let lineNumber: number = 0;
@@ -23,34 +30,43 @@ export function parseProgram(code: string, numTapes: number): Rule[] {
 
     const parts = trimmed.split("->")
     if (parts.length < 2) {
-      throw new Error(`Niepoprawna reguła (brak ->) w linii ${lineNumber}`)
+      return { success: false, errorCode: "invalidRuleMissing", lineNumber }
     }
     if (parts.length > 2) {
-      throw new Error(`Niepoprawna reguła (więcej niż 1 ->) w linii ${lineNumber}`)
+      return { success: false, errorCode: "invalidRuleTooMany", lineNumber }
     }
 
     const left = parts[0].trim().split(",")
     const currentState = left[0]
-    const readSymbols = left.slice(1).map(handleBlank)
+    const readSymbolsRaw = left.slice(1)
 
-    if (readSymbols.length !== numTapes) {
-      throw new Error(`Niepoprawna liczba symboli wejściowych w linii ${lineNumber}`)
+    if (readSymbolsRaw.length !== numTapes) {
+      return { success: false, errorCode: "invalidRuleInputLength", lineNumber }
     }
+    if (readSymbolsRaw.some(sym => sym === "")) {
+      return { success: false, errorCode: "InvalidRuleInputBlank", lineNumber }
+    }
+    const readSymbols = readSymbolsRaw.map(handleBlank)
 
     const right = parts[1].trim().split(",")
     const nextState = right[0]
-    const writeSymbols = right.slice(1, 1 + numTapes).map(handleBlank)
+    const writeSymbolsRaw = right.slice(1, 1 + numTapes)
     const moves = right.slice(1 + numTapes) as ("L" | "R" | "S")[]
 
-    if (writeSymbols.length !== numTapes || moves.length !== numTapes) {
-      throw new Error(
-        `Niepoprawna liczba symboli wyjściowych lub ruchów w linii ${lineNumber}`
-      )
+    if (writeSymbolsRaw.length !== numTapes) {
+      return { success: false, errorCode: "invalidRuleOutputLength", lineNumber }
     }
+    if (writeSymbolsRaw.some(sym => sym === "")) {
+      return { success: false, errorCode: "invalidRuleOutputBlank", lineNumber }
+    }
+    if (moves.length !== numTapes) {
+      return { success: false, errorCode: "invalidRuleOutputMovesLength", lineNumber }
+    }
+    const writeSymbols = writeSymbolsRaw.map(handleBlank)
 
     for (const move of moves) {
       if (!["L", "R", "S"].includes(move)) {
-        throw new Error(`Niepoprawny ruch "${move}" w linii: ${lineNumber}`)
+        return { success: false, errorCode: "invalidRuleMove", lineNumber }
       }
     }
 
@@ -63,5 +79,5 @@ export function parseProgram(code: string, numTapes: number): Rule[] {
     })
   }
 
-  return rules
+  return { success: true, rules }
 }
