@@ -42,12 +42,18 @@ q1,_,_ -> q0,_,_,R,R`
   }
 
   function addTape() {
+    if (isRunning.value) {
+      return
+    }
     machine.tapes.push(new TapeClass())
     numberOfTapes.value = machine.tapes.length
   }
 
   function removeTape() {
     if (machine.tapes.length <= 1) {
+      return
+    }
+    if (isRunning.value) {
       return
     }
     machine.tapes.pop()
