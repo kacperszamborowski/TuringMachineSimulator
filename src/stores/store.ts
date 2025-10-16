@@ -75,7 +75,7 @@ q1,_,_ -> q0,_,_,R,R`
       rules.value = result.rules
       initState.value = result.initState!
       acceptState.value = result.acceptState!
-      resetMachine()
+      loadInput()
     }
   }
 
@@ -98,7 +98,7 @@ q1,_,_ -> q0,_,_,R,R`
   }
 
   function step() {
-    if (currentState.value == acceptState.value) {
+    if (currentState.value === acceptState.value) {
       console.log("Succes")
       stop()
       return
