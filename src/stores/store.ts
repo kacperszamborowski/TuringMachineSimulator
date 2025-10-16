@@ -4,14 +4,23 @@ import { defineStore } from 'pinia'
 import { reactive, ref } from 'vue'
 
 export const MachineStore = defineStore('machineStore', () => {
-  const exampleCode = "//example input: 11111\n//2 tapes\nq0,1,_ -> q0,1,1,R,R\nq0,_,_ -> q1,_,_,L,L\nq1,1,1 -> q1,1,_,L,L\nq1,_,_ -> q0,_,_,R,R"
+  const exampleCode = `//example input: 11111
+//2 tapes
+init: q0
+accept: q2
+q0,1,_ -> q0,1,1,R,R
+q0,_,_ -> q1,_,_,L,L
+q1,1,1 -> q1,1,_,L,L
+q1,_,_ -> q0,_,_,R,R`
 
   const numberOfTapes = ref(1)
   const machine = reactive(new TuringMachine(1))
   const programCode = ref(exampleCode)
   const rules = ref<Rule[]>([])
   const initialInput = ref("")
-  const currentState = ref("q0")
+  const currentState = ref("")
+  const initState = ref("")
+  const acceptState = ref("")
   const isRunning = ref(false)
   let stepId: number | null = null
   const errorCode = ref<string | null>(null)
@@ -47,7 +56,7 @@ export const MachineStore = defineStore('machineStore', () => {
 
   function resetMachine() {
     machine.tapes = Array.from({ length: numberOfTapes.value }, () => new TapeClass())
-    currentState.value = "q0"
+    currentState.value = initState.value
     clearError()
     stop()
   }
@@ -64,6 +73,8 @@ export const MachineStore = defineStore('machineStore', () => {
 
     if (result.rules) {
       rules.value = result.rules
+      initState.value = result.initState!
+      acceptState.value = result.acceptState!
       resetMachine()
     }
   }
@@ -87,23 +98,27 @@ export const MachineStore = defineStore('machineStore', () => {
   }
 
   function step() {
-    const currentSymbols = machine.tapes.map(tape => tape.head.value || "")
+    if (currentState.value == acceptState.value) {
+      console.log("Succes")
+      stop()
+      return
+    }
 
+    const currentSymbols = machine.tapes.map(tape => tape.head.value || "")
     const rule = rules.value.find(r =>
       r.currentState === currentState.value &&
       r.readSymbols.every((symbol, i) => symbol === currentSymbols[i])
     )
 
+    //Handle it better later
     if (!rule) {
       console.log("Brak pasującej reguły – zatrzymanie.")
       stop()
       return
     }
+    //
 
-    rule.writeSymbols.forEach((symbol, i) => {
-      machine.tapes[i].writeSymbol(symbol)
-    })
-
+    rule.writeSymbols.forEach((symbol, i) => machine.tapes[i].writeSymbol(symbol))
     rule.moves.forEach((move, i) => {
       if (move === "L") machine.tapes[i].moveLeft()
       if (move === "R") machine.tapes[i].moveRight()

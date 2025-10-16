@@ -9,6 +9,8 @@ export interface Rule {
 export interface ParseResult {
   success: boolean
   rules?: Rule[]
+  initState?: string
+  acceptState?: string
   errorCode?: string
   lineNumber?: number
 }
@@ -19,16 +21,28 @@ function handleBlank(s: string): string {
 
 export function parseProgram(code: string, numTapes: number): ParseResult {
   const rules: Rule[] = []
-  const lines = code.split("\n")
+  const lines = code.split("\n").map(l => l.trim()).filter(l => l.length > 0)
   let lineNumber: number = 0;
+  let initState: string | null = null
+  let acceptState: string | null = null
 
   for (const line of lines) {
     lineNumber++;
-    const trimmed = line.trim()
-    if (!trimmed || trimmed.startsWith("//"))
+
+    if (line.startsWith("//"))
       continue
 
-    const parts = trimmed.split("->")
+    if (line.startsWith("init:")) {
+      initState = line.replace("init:", "").trim()
+      continue
+    }
+
+    if (line.startsWith("accept:")) {
+      acceptState = line.replace("accept:", "").trim()
+      continue
+    }
+
+    const parts = line.split("->")
     if (parts.length < 2) {
       return { success: false, errorCode: "invalidRuleMissing", lineNumber }
     }
@@ -79,5 +93,13 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
     })
   }
 
-  return { success: true, rules }
+  if (!initState) {
+    return { success: false, errorCode: "missingInit", lineNumber: -1 }
+  }
+
+  if (!acceptState) {
+    return { success: false, errorCode: "missingAccept", lineNumber: -1 }
+  }
+
+  return { success: true, rules, initState, acceptState }
 }
