@@ -3,6 +3,7 @@ import "../styles/tape.css"
 import { Tape as TapeClass, TapeCell } from '../turingMachine'
 import { MachineStore } from "../stores/store"
 import { computed } from "vue"
+import AppSection from "./AppSection.vue"
 
 const machineStore = MachineStore()
 const visibleCells = 21
@@ -41,19 +42,23 @@ const tapeSegments = computed(() =>
 </script>
 
 <template>
-  <button @click="machineStore.addTape">{{ $t("addTape") }}</button>
-  <button @click="machineStore.removeTape">{{ $t("removeTape") }}</button>
+  <AppSection class="wide">
+    <div class="tape-controls">
+      <button @click="machineStore.addTape">{{ $t("addTape") }}</button>
+      <button @click="machineStore.removeTape">{{ $t("removeTape") }}</button>
+    </div>
 
-  <div class="tape-container">
-    <div v-for="(cells, tIndex) in tapeSegments" :key="tIndex" class="tape">
-      <div class="tape-track-wrapper">
-        <transition-group name="slide" tag="div" class="tape-track">
-          <div v-for="cell in cells" :key="cell.id" class="cell"
-            :class="{ active: cell === machineStore.machine.tapes[tIndex].head }">
-            {{ cell.value }}
-          </div>
-        </transition-group>
+    <div class="tape-container">
+      <div v-for="(cells, tIndex) in tapeSegments" :key="tIndex" class="tape">
+        <div class="tape-track-wrapper">
+          <transition-group name="slide" tag="div" class="tape-track">
+            <div v-for="cell in cells" :key="cell.id" class="cell"
+              :class="{ active: cell === machineStore.machine.tapes[tIndex].head }">
+              {{ cell.value }}
+            </div>
+          </transition-group>
+        </div>
       </div>
     </div>
-  </div>
+  </AppSection>
 </template>

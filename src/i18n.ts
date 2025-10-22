@@ -20,6 +20,9 @@ const messages = {
     machineRunning: "W trakcie",
     machineSuccess: "Sukces",
     machineFail: "Błąd",
+    compile: "Kompiluj",
+    enterInput: "Wejście...",
+    loadInput: "Wczytaj",
   },
   en: {
     header: "Turing machine simulator",
@@ -40,6 +43,9 @@ const messages = {
     machineRunning: "Running",
     machineSuccess: "Success",
     machineFail: "Failed",
+    compile: "Compile",
+    enterInput: "Input...",
+    loadInput: "Load",
   },
 };
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import "../styles/errorBox.css"
 import { MachineStore } from "../stores/store"
+import AppSection from "./AppSection.vue";
 const machineStore = MachineStore()
 </script>
 
 <template>
-    <div v-if="machineStore.errorCode" class="error-box">
+    <AppSection class="error" v-if="machineStore.errorCode">
         {{ $t(machineStore.errorCode) }} {{ machineStore.errorLine }}
-    </div>
+    </AppSection>
 </template>

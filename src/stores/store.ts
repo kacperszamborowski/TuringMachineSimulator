@@ -64,7 +64,6 @@ q1,_,_ -> q2,_,_,R,R`
   function resetMachine() {
     machine.tapes = Array.from({ length: numberOfTapes.value }, () => new TapeClass())
     currentState.value = initState.value
-    status.value = "stopped"
     clearError()
     stop()
   }
@@ -168,6 +167,7 @@ q1,_,_ -> q2,_,_,R,R`
     run,
     stop,
     errorCode,
-    errorLine
+    errorLine,
+    resetMachine
   }
 })

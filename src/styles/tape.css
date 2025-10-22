@@ -1,3 +1,7 @@
+.tape-controls button{
+  margin-left: 0.5rem;
+}
+
 .tape-container {
   display: flex;
   flex-direction: column;
@@ -38,11 +42,4 @@
 
 .active {
   background: #ffd54f;
-  border: 2px solid #000;
-}
-
-.controls {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 0.2rem;
 }

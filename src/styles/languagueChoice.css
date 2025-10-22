@@ -1,8 +1,7 @@
 .flags {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  font-size: 2rem;
+  gap: 1rem;
   cursor: pointer;
 }
 
