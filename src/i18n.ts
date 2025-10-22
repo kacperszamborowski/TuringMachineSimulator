@@ -14,7 +14,12 @@ const messages = {
     invalidRuleOutputMovesLength: "Niepoprawna liczba ruchów w linii ",
     invalidRuleMove: "Niepoprawny ruch (dozwolone ruchy: L, R, S) w linii ",
     missingInit: "Brak stanu inicjalizującego: ",
-    missingAccept: "Brak stanu akceptującego: "
+    missingAccept: "Brak stanu akceptującego: ",
+    statusState: "Stan:",
+    machineStopped: "Zatrzymano",
+    machineRunning: "W trakcie",
+    machineSuccess: "Sukces",
+    machineFail: "Błąd",
   },
   en: {
     header: "Turing machine simulator",
@@ -29,7 +34,12 @@ const messages = {
     invalidRuleOutputMovesLength: "Invalid number of moves in line ",
     invalidRuleMove: "Invalid move (allowed moves: L, R, S) in line ",
     missingInit: "Initial state missing: ",
-    missingAccept: "Accept state missing: "
+    missingAccept: "Accept state missing: ",
+    statusState: "State:",
+    machineStopped: "Stopped",
+    machineRunning: "Running",
+    machineSuccess: "Success",
+    machineFail: "Failed",
   },
 };
 

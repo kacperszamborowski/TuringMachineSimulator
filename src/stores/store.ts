@@ -11,7 +11,7 @@ accept: q2
 q0,1,_ -> q0,1,1,R,R
 q0,_,_ -> q1,_,_,L,L
 q1,1,1 -> q1,1,_,L,L
-q1,_,_ -> q0,_,_,R,R`
+q1,_,_ -> q2,_,_,R,R`
 
   const numberOfTapes = ref(1)
   const machine = reactive(new TuringMachine(1))
@@ -22,6 +22,7 @@ q1,_,_ -> q0,_,_,R,R`
   const initState = ref("")
   const acceptState = ref("")
   const isRunning = ref(false)
+  const status = ref<"stopped" | "running" | "success" | "fail">("stopped")
   let stepId: number | null = null
   const errorCode = ref<string | null>(null)
   const errorLine = ref<number | null>(null)
@@ -63,6 +64,7 @@ q1,_,_ -> q0,_,_,R,R`
   function resetMachine() {
     machine.tapes = Array.from({ length: numberOfTapes.value }, () => new TapeClass())
     currentState.value = initState.value
+    status.value = "stopped"
     clearError()
     stop()
   }
@@ -105,8 +107,8 @@ q1,_,_ -> q0,_,_,R,R`
 
   function step() {
     if (currentState.value === acceptState.value) {
-      console.log("Succes")
       stop()
+      status.value = "success"
       return
     }
 
@@ -116,13 +118,11 @@ q1,_,_ -> q0,_,_,R,R`
       r.readSymbols.every((symbol, i) => symbol === currentSymbols[i])
     )
 
-    //Handle it better later
     if (!rule) {
-      console.log("Brak pasującej reguły – zatrzymanie.")
       stop()
+      status.value = "fail"
       return
     }
-    //
 
     rule.writeSymbols.forEach((symbol, i) => machine.tapes[i].writeSymbol(symbol))
     rule.moves.forEach((move, i) => {
@@ -137,11 +137,13 @@ q1,_,_ -> q0,_,_,R,R`
   function run(speed: number = 500) {
     if (isRunning.value) return
     isRunning.value = true
+    status.value = "running"
     stepId = setInterval(step, speed)
   }
 
   function stop() {
     isRunning.value = false
+    status.value = "stopped"
     if (stepId) {
       clearInterval(stepId)
       stepId = null
@@ -161,6 +163,7 @@ q1,_,_ -> q0,_,_,R,R`
     loadInput,
     currentState,
     isRunning,
+    status,
     step,
     run,
     stop,

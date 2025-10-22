@@ -18,5 +18,4 @@ const machineStore = MachineStore();
   <button @click="machineStore.step">▶️ Krok</button>
   <button @click="machineStore.run(500)">⏩ Start</button>
   <button @click="machineStore.stop">⏹ Stop</button>
-  <p>Stan: {{ machineStore.currentState }}</p>
 </template>

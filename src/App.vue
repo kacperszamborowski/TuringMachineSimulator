@@ -4,6 +4,7 @@ import Tape from './components/Tape.vue'
 import ErrorBox from './components/ErrorBox.vue';
 import CodeEditor from './components/CodeEditor.vue';
 import "./styles/app.css"
+import MachineStatus from './components/MachineStatus.vue';
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import "./styles/app.css"
     <LanguagueChoice />
     <h1>{{ $t("header") }}</h1>
     <Tape />
+    <MachineStatus />
     <ErrorBox />
     <CodeEditor />
   </main>
