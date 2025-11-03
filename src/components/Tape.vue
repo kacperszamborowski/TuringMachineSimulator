@@ -48,7 +48,7 @@ const tapeSegments = computed(() =>
       <button @click="machineStore.removeTape">{{ $t("removeTape") }}</button>
     </div>
 
-    <div class="tape-container">
+    <div class="tape-container" :style="{ '--anim-speed': machineStore.speed + 'ms' }">
       <div v-for="(cells, tIndex) in tapeSegments" :key="tIndex" class="tape">
         <div class="tape-track-wrapper">
           <transition-group name="slide" tag="div" class="tape-track">

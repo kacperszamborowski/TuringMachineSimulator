@@ -25,3 +25,53 @@
     font-weight: bold;
     margin-right: 0.5rem;
 }
+
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.speed-control input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 150px;
+  height: 6px;
+  border-radius: 4px;
+  background: #ddd;
+  outline: none;
+}
+
+.speed-control input[type="range"]:hover {
+  background: #ccc;
+}
+
+.speed-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #666;
+  cursor: pointer;
+}
+
+.speed-control input[type="range"]::-webkit-slider-thumb:hover {
+  background: #444;
+  transform: scale(1.1);
+}
+
+.speed-control input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #666;
+  cursor: pointer;
+}
+
+.speed-control input[type="range"]::-moz-range-thumb:hover {
+  background: #444;
+  transform: scale(1.1);
+}

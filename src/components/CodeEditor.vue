@@ -12,8 +12,7 @@ const machineStore = MachineStore();
 <template>
   <AppSection>
     <div class="editor">
-      <Codemirror v-model="machineStore.programCode" placeholder="Zaprogramuj maszynę" :style="{ height: '300px' }"
-        :tab-size="2" />
+      <Codemirror v-model="machineStore.programCode" :style="{ height: '300px' }" :tab-size="2" />
       <div class="editor-controls">
         <div class="left-controls">
           <button @click="machineStore.loadProgram">{{ $t("compile") }}</button>
@@ -23,7 +22,7 @@ const machineStore = MachineStore();
           </div>
         </div>
         <div class="right-controls">
-          <button @click="machineStore.run(500)"><i class="fa fa-play" /></button>
+          <button @click="machineStore.run()"><i class="fa fa-play" /></button>
           <button @click="machineStore.step"><i class="fa fa-step-forward" /></button>
           <button @click="machineStore.stop"><i class="fa fa-pause" /></button>
           <button @click="machineStore.resetMachine"><i class="fa fa-sync" /></button>

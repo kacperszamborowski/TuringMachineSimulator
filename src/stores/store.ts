@@ -1,7 +1,7 @@
 import { parseProgram, type Rule } from '../parser'
 import { TuringMachine, Tape as TapeClass } from '@/turingMachine'
 import { defineStore } from 'pinia'
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 
 export const MachineStore = defineStore('machineStore', () => {
   const exampleCode = `//example input: 11111
@@ -23,9 +23,11 @@ q1,_,_ -> q2,_,_,R,R`
   const acceptState = ref("")
   const isRunning = ref(false)
   const status = ref<"stopped" | "running" | "success" | "fail">("stopped")
-  let stepId: number | null = null
+  //let stepId: number | null = null
   const errorCode = ref<string | null>(null)
   const errorLine = ref<number | null>(null)
+  const rawSpeed = ref(500)
+  const speed = computed(() => 1000 - rawSpeed.value)
 
   function setError(errCode: string | null, errLine: number | null) {
     errorCode.value = errCode
@@ -133,20 +135,22 @@ q1,_,_ -> q2,_,_,R,R`
     currentState.value = rule.nextState
   }
 
-  function run(speed: number = 500) {
+  function run() {
     if (isRunning.value) return
     isRunning.value = true
     status.value = "running"
-    stepId = setInterval(step, speed)
+
+    const loop = () => {
+      if (!isRunning.value) return
+      step()
+      setTimeout(loop, speed.value)
+    }
+    loop()
   }
 
   function stop() {
     isRunning.value = false
     status.value = "stopped"
-    if (stepId) {
-      clearInterval(stepId)
-      stepId = null
-    }
   }
 
   return {
@@ -168,6 +172,8 @@ q1,_,_ -> q2,_,_,R,R`
     stop,
     errorCode,
     errorLine,
-    resetMachine
+    resetMachine,
+    rawSpeed,
+    speed
   }
 })

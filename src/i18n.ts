@@ -23,6 +23,7 @@ const messages = {
     compile: "Kompiluj",
     enterInput: "Wejście...",
     loadInput: "Wczytaj",
+    speed: "Prędkość:",
   },
   en: {
     header: "Turing machine simulator",
@@ -46,6 +47,7 @@ const messages = {
     compile: "Compile",
     enterInput: "Input...",
     loadInput: "Load",
+    speed: "Speed:",
   },
 };
 

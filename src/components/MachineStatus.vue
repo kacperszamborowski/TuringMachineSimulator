@@ -8,6 +8,10 @@ const machineStore = MachineStore()
 <template>
     <AppSection>
         <div class="status-container">
+            <div class="speed-control">
+                <label for="speed">{{ $t("speed") }} </label>
+                <input id="speed" type="range" min="0" max="1000" step="100" v-model.number="machineStore.rawSpeed" />
+            </div>
             <div>
                 <span class="label">{{ $t("statusState") }}</span>
                 <span class="value">{{ machineStore.currentState }}</span>

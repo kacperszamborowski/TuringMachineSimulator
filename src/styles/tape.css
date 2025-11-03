@@ -14,7 +14,7 @@
 }
 
 .slide-move {
-  transition: transform 0.5s ease;
+  transition: transform var(--anim-speed, 500ms) ease;
 }
 
 .slide-leave-active {
