@@ -79,6 +79,9 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
     const writeSymbols = writeSymbolsRaw.map(handleBlank)
 
     for (const move of moves) {
+      if (move.includes("//")) {
+        return { success: false, errorCode: "invalidComment", lineNumber }
+      }
       if (!["L", "R", "S"].includes(move)) {
         return { success: false, errorCode: "invalidRuleMove", lineNumber }
       }

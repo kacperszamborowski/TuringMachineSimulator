@@ -1,36 +1,28 @@
-.status-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-}
-
-.status-box.running .value {
-    color: #007bff;
-}
-
-.status-box.success .value {
-    color: #28a745;
-}
-
-.status-box.fail .value {
-    color: #dc3545;
-}
-
-.status-box.stopped .value {
-    color: #6c757d;
+.controls-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
 }
 
 .label {
-    font-weight: bold;
-    margin-right: 0.5rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.machine-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.machine-controls button i {
+  font-size: 1.5rem
 }
 
 .speed-control {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 1rem;
+  gap: 0.5rem;
   color: #333;
 }
 

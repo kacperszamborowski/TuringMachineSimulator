@@ -13,6 +13,7 @@ const messages = {
     invalidRuleOutputBlank: "Niepoprawna liczba symboli wyjściowych (symbol pusty powinien być zapisany jako '_' w linii ",
     invalidRuleOutputMovesLength: "Niepoprawna liczba ruchów w linii ",
     invalidRuleMove: "Niepoprawny ruch (dozwolone ruchy: L, R, S) w linii ",
+    invalidComment: "Komentarz musi obejmować całą linię w linii ",
     missingInit: "Brak stanu inicjalizującego: ",
     missingAccept: "Brak stanu akceptującego: ",
     statusState: "Stan:",
@@ -24,6 +25,7 @@ const messages = {
     enterInput: "Wejście...",
     loadInput: "Wczytaj",
     speed: "Prędkość:",
+    stepCount: "Kroki:",
   },
   en: {
     header: "Turing machine simulator",
@@ -37,6 +39,7 @@ const messages = {
     invalidRuleOutputBlank: "Invalid number of output symbols (blank symbol should be written as '_') in line ",
     invalidRuleOutputMovesLength: "Invalid number of moves in line ",
     invalidRuleMove: "Invalid move (allowed moves: L, R, S) in line ",
+    invalidComment: "Comment must cover the whole line in line ",
     missingInit: "Initial state missing: ",
     missingAccept: "Accept state missing: ",
     statusState: "State:",
@@ -48,6 +51,7 @@ const messages = {
     enterInput: "Input...",
     loadInput: "Load",
     speed: "Speed:",
+    stepCount: "Steps:",
   },
 };
 

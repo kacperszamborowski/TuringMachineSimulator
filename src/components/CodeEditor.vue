@@ -21,12 +21,6 @@ const machineStore = MachineStore();
             <button @click="machineStore.loadInput">{{ $t("loadInput") }}</button>
           </div>
         </div>
-        <div class="right-controls">
-          <button @click="machineStore.run()"><i class="fa fa-play" /></button>
-          <button @click="machineStore.step"><i class="fa fa-step-forward" /></button>
-          <button @click="machineStore.stop"><i class="fa fa-pause" /></button>
-          <button @click="machineStore.resetMachine"><i class="fa fa-sync" /></button>
-        </div>
       </div>
     </div>
   </AppSection>

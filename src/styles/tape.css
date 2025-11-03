@@ -1,5 +1,42 @@
-.tape-controls button{
+.tape-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.machine-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 3rem;
+  align-items: center;
+}
+
+.tape-buttons button{
   margin-left: 0.5rem;
+}
+
+.status-box.running .value {
+    color: #007bff;
+}
+
+.status-box.success .value {
+    color: #28a745;
+}
+
+.status-box.fail .value {
+    color: #dc3545;
+}
+
+.status-box.stopped .value {
+    color: #6c757d;
+}
+
+.label {
+    font-weight: bold;
+    margin-right: 0.5rem;
 }
 
 .tape-container {

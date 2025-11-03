@@ -6,7 +6,7 @@ import { computed } from "vue"
 import AppSection from "./AppSection.vue"
 
 const machineStore = MachineStore()
-const visibleCells = 21
+const visibleCells = 23
 
 function getTapeSegment(tape: TapeClass): TapeCell[] {
   const cells: TapeCell[] = []
@@ -43,9 +43,30 @@ const tapeSegments = computed(() =>
 
 <template>
   <AppSection class="wide">
-    <div class="tape-controls">
-      <button @click="machineStore.addTape">{{ $t("addTape") }}</button>
-      <button @click="machineStore.removeTape">{{ $t("removeTape") }}</button>
+    <div class="tape-box">
+      <div class="tape-buttons">
+        <button @click="machineStore.addTape">{{ $t("addTape") }}</button>
+        <button @click="machineStore.removeTape">{{ $t("removeTape") }}</button>
+      </div>
+      <div class="machine-info">
+        <div>
+          <span class="label">{{ $t("stepCount") }}</span>
+          <span class="value">{{ machineStore.stepCount }}</span>
+        </div>
+        <div>
+          <span class="label">{{ $t("statusState") }}</span>
+          <span class="value">{{ machineStore.currentState }}</span>
+        </div>
+        <div class="status-box" :class="machineStore.status">
+          <span class="label">Status:</span>
+          <span class="value">
+            <template v-if="machineStore.status === 'running'">{{ $t("machineRunning") }}</template>
+            <template v-else-if="machineStore.status === 'success'">{{ $t("machineSuccess") }}</template>
+            <template v-else-if="machineStore.status === 'fail'">{{ $t("machineFail") }}</template>
+            <template v-else>{{ $t("machineStopped") }}</template>
+          </span>
+        </div>
+      </div>
     </div>
 
     <div class="tape-container" :style="{ '--anim-speed': machineStore.speed + 'ms' }">

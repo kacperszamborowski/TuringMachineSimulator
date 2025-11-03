@@ -18,16 +18,16 @@ q1,_,_ -> q2,_,_,R,R`
   const programCode = ref(exampleCode)
   const rules = ref<Rule[]>([])
   const initialInput = ref("")
-  const currentState = ref("")
+  const currentState = ref("q0")
   const initState = ref("")
   const acceptState = ref("")
   const isRunning = ref(false)
   const status = ref<"stopped" | "running" | "success" | "fail">("stopped")
-  //let stepId: number | null = null
   const errorCode = ref<string | null>(null)
   const errorLine = ref<number | null>(null)
   const rawSpeed = ref(500)
   const speed = computed(() => 1000 - rawSpeed.value)
+  const stepCount = ref(0)
 
   function setError(errCode: string | null, errLine: number | null) {
     errorCode.value = errCode
@@ -66,6 +66,7 @@ q1,_,_ -> q2,_,_,R,R`
   function resetMachine() {
     machine.tapes = Array.from({ length: numberOfTapes.value }, () => new TapeClass())
     currentState.value = initState.value
+    stepCount.value = 0
     clearError()
     stop()
   }
@@ -112,6 +113,8 @@ q1,_,_ -> q2,_,_,R,R`
       status.value = "success"
       return
     }
+
+    stepCount.value++
 
     const currentSymbols = machine.tapes.map(tape => tape.head.value || "")
     const rule = rules.value.find(r =>
@@ -174,6 +177,7 @@ q1,_,_ -> q2,_,_,R,R`
     errorLine,
     resetMachine,
     rawSpeed,
-    speed
+    speed,
+    stepCount
   }
 })
