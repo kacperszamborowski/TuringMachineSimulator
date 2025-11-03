@@ -11,6 +11,7 @@ export interface ParseResult {
   rules?: Rule[]
   initState?: string
   acceptState?: string
+  neededTapes?: number
   errorCode?: string
   lineNumber?: number
 }
@@ -25,6 +26,7 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
   let lineNumber: number = 0;
   let initState: string | null = null
   let acceptState: string | null = null
+  let neededTapes: number = 0;
 
   for (const line of lines) {
     lineNumber++;
@@ -53,6 +55,8 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
     const left = parts[0].trim().split(",")
     const currentState = left[0]
     const readSymbolsRaw = left.slice(1)
+
+    neededTapes = readSymbolsRaw.length
 
     if (readSymbolsRaw.length !== numTapes) {
       return { success: false, errorCode: "invalidRuleInputLength", lineNumber }
@@ -104,5 +108,5 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
     return { success: false, errorCode: "missingAccept", lineNumber: -1 }
   }
 
-  return { success: true, rules, initState, acceptState }
+  return { success: true, rules, initState, acceptState, neededTapes }
 }

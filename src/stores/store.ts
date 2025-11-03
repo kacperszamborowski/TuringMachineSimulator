@@ -28,6 +28,7 @@ q1,_,_ -> q2,_,_,R,R`
   const rawSpeed = ref(500)
   const speed = computed(() => 1000 - rawSpeed.value)
   const stepCount = ref(0)
+  const neededTapes = ref(0)
 
   function setError(errCode: string | null, errLine: number | null) {
     errorCode.value = errCode
@@ -85,6 +86,7 @@ q1,_,_ -> q2,_,_,R,R`
       rules.value = result.rules
       initState.value = result.initState!
       acceptState.value = result.acceptState!
+      neededTapes.value = result.neededTapes!
       loadInput()
     }
   }
@@ -140,6 +142,15 @@ q1,_,_ -> q2,_,_,R,R`
 
   function run() {
     if (isRunning.value) return
+
+    while (numberOfTapes.value > neededTapes.value) { //removes unnecessary tapes added after compilation
+      removeTape()
+    }
+
+    while (numberOfTapes.value < neededTapes.value) { //adds missing tapes removed after compilation
+      addTape()
+    }
+
     isRunning.value = true
     status.value = "running"
 
