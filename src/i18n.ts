@@ -26,6 +26,8 @@ const messages = {
     loadInput: "Wczytaj",
     speed: "Prędkość:",
     stepCount: "Kroki:",
+    custom: "Własny",
+    chooseExampleAlgorithm: "Wybierz przykładowy algorytm",
   },
   en: {
     header: "Turing machine simulator",
@@ -52,6 +54,8 @@ const messages = {
     loadInput: "Load",
     speed: "Speed:",
     stepCount: "Steps:",
+    custom: "Custom",
+    chooseExampleAlgorithm: "Choose example algorithm",
   },
 };
 

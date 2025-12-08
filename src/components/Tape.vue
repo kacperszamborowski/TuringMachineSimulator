@@ -4,9 +4,21 @@ import { Tape as TapeClass, TapeCell } from '../turingMachine'
 import { MachineStore } from "../stores/store"
 import { computed } from "vue"
 import AppSection from "./AppSection.vue"
+import { algorithms, type ExampleKey } from "@/example-algorithms"
 
 const machineStore = MachineStore()
 const visibleCells = 23
+
+function loadAlgorithm(key: ExampleKey) {
+  machineStore.programCode = algorithms[key]
+}
+
+function onAlgorithmChange(e: Event) {
+  const target = e.target as HTMLSelectElement | null
+  if (!target) return
+
+  loadAlgorithm(target.value as ExampleKey)
+}
 
 function getTapeSegment(tape: TapeClass): TapeCell[] {
   const cells: TapeCell[] = []
@@ -47,6 +59,15 @@ const tapeSegments = computed(() =>
       <div class="tape-buttons">
         <button @click="machineStore.addTape">{{ $t("addTape") }}</button>
         <button @click="machineStore.removeTape">{{ $t("removeTape") }}</button>
+      </div>
+      <div class="algorithms-menu">
+        <select @change="onAlgorithmChange($event)">
+          <option value="" disabled selected>{{ $t("chooseExampleAlgorithm") }}</option>
+          <option value="custom">{{ $t("custom") }}</option>
+          <option value="algorithm1">1</option>
+          <option value="algorithm2">2</option>
+          <option value="algorithm3">3</option>
+        </select>
       </div>
       <div class="machine-info">
         <div>

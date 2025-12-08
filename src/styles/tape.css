@@ -6,6 +6,13 @@
   padding-right: 1rem;
 }
 
+.algorithms-menu select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
 .machine-info {
   display: flex;
   flex-direction: row;
