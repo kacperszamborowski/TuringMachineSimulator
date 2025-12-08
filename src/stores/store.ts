@@ -1,5 +1,5 @@
-import { parseProgram, type Rule } from '../parser'
-import { TuringMachine, Tape as TapeClass } from '@/turingMachine'
+import { parseProgram, type Rule } from '../logic/parser'
+import { TuringMachine, Tape as TapeClass } from '@/logic/turingMachine'
 import { defineStore } from 'pinia'
 import { computed, reactive, ref } from 'vue'
 

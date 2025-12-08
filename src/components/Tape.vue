@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import "../styles/tape.css"
-import { Tape as TapeClass, TapeCell } from '../turingMachine'
+import { Tape as TapeClass, TapeCell } from '../logic/turingMachine'
 import { MachineStore } from "../stores/store"
 import { computed } from "vue"
 import AppSection from "./AppSection.vue"
-import { algorithms, type ExampleKey } from "@/example-algorithms"
+import { algorithms, type ExampleKey } from "@/data/example-algorithms"
 
 const machineStore = MachineStore()
 const visibleCells = 23

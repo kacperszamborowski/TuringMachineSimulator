@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import i18n from './i18n.ts'
+import i18n from './i18n/i18n.ts'
 import App from './App.vue'
 
 const app = createApp(App)
