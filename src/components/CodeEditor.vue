@@ -12,16 +12,14 @@ const machineStore = MachineStore();
 <template>
   <AppSection>
     <div class="editor">
-      <Codemirror v-model="machineStore.programCode" :style="{ height: '300px' }" :tab-size="2" />
       <div class="editor-controls">
-        <div class="left-controls">
-          <button @click="machineStore.loadProgram">{{ $t("compile") }}</button>
-          <div class="load-input">
-            <input v-model="machineStore.initialInput" :placeholder="$t('enterInput')" />
-            <button @click="machineStore.loadInput">{{ $t("loadInput") }}</button>
-          </div>
+        <button @click="machineStore.loadProgram">{{ $t("compile") }}</button>
+        <div class="load-input">
+          <input v-model="machineStore.initialInput" :placeholder="$t('enterInput')" />
+          <button @click="machineStore.loadInput">{{ $t("loadInput") }}</button>
         </div>
       </div>
+      <Codemirror v-model="machineStore.programCode" :style="{ height: '300px' }" :tab-size="2" />
     </div>
   </AppSection>
 </template>

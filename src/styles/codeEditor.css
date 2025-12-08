@@ -15,14 +15,8 @@
 
 .editor-controls {
   display: flex;
+  justify-content: space-between;
   gap: 1rem;
-}
-
-.left-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-start;
 }
 
 .load-input {
