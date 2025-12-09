@@ -28,6 +28,9 @@ const messages = {
     stepCount: "Kroki:",
     custom: "Własny",
     chooseExampleAlgorithm: "Wybierz przykładowy algorytm",
+    one_tape: "1 taśma",
+    two_tapes: "2 taśmy",
+    three_tapes: "3 taśmy",
     howDoesThisWork: "Jak to działa?",
     tutorial: {
       tutorial: "Poradnik",
@@ -62,6 +65,9 @@ const messages = {
     stepCount: "Steps:",
     custom: "Custom",
     chooseExampleAlgorithm: "Choose example algorithm",
+    one_tape: "1 tape",
+    two_tapes: "2 tapes",
+    three_tapes: "3 tapes",
     howDoesThisWork: "How does this work?",
     tutorial: {
       tutorial: "Tutorial",
