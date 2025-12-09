@@ -24,6 +24,9 @@ export const MachineStore = defineStore('machineStore', () => {
   function setError(errCode: string | null, errLine: number | null) {
     errorCode.value = errCode
     errorLine.value = errLine
+    setTimeout(() => {
+      clearError()
+    }, 5000)
   }
 
   function clearError() {
