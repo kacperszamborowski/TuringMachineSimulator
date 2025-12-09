@@ -22,7 +22,7 @@ function handleBlank(s: string): string {
 
 export function parseProgram(code: string, numTapes: number): ParseResult {
   const rules: Rule[] = []
-  const lines = code.split("\n").map(l => l.trim()).filter(l => l.length > 0)
+  const lines = code.split("\n").map(l => l.trim())
   let lineNumber: number = 0;
   let initState: string | null = null
   let acceptState: string | null = null
@@ -30,6 +30,10 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
 
   for (const line of lines) {
     lineNumber++;
+
+    if (line.length === 0) {
+      continue
+    }
 
     if (line.startsWith("//"))
       continue
