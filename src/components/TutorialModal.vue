@@ -19,14 +19,21 @@ const emit = defineEmits<{
 
                 <div class="modal-content">
                     <h3>{{ $t("tutorial.howToUse") }}</h3>
-                    <p>
-                        ...<br />
-                        ...<br />
-                        ...<br />
+                    <p style="font-size:18px" v-html="$t('tutorial.howToUseContent')"></p>
+                    <h3> {{ $t("tutorial.howDoesTheCodeWork") }}</h3>
+                    <p style="font-size:18px" v-html="$t('tutorial.mentions')"></p>
+                    <p style="font-size:18px" v-html="$t('tutorial.howDoesTheCodeWorkContentP1')"></p>
+                    <p style="font-size:18px">
+                        <span style="color:red">q0</span><span>,</span>
+                        <span style="color:blue">1</span><span>,</span>
+                        <span>_</span><span> -> </span>
+                        <span style="color:orange">q0</span><span>,</span>
+                        <span style="color:magenta">1</span><span>,</span>
+                        <span style="color:grey">1</span><span>,</span>
+                        <span style="color:purple">R</span><span>,</span>
+                        <span style="color:green">R</span>
                     </p>
-                    <p>
-                        ...<br />
-                    </p>
+                    <p style="font-size:18px" v-html="$t('tutorial.howDoesTheCodeWorkContentP2')"></p>
                 </div>
             </div>
         </div>
