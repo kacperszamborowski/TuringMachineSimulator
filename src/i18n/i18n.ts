@@ -28,6 +28,12 @@ const messages = {
     stepCount: "Kroki:",
     custom: "Własny",
     chooseExampleAlgorithm: "Wybierz przykładowy algorytm",
+    howDoesThisWork: "Jak to działa?",
+    tutorial: {
+      tutorial: "Poradnik",
+      close: "Zamknij",
+      howToUse: "Jak korzystać z symulatora",
+    }
   },
   en: {
     header: "Turing machine simulator",
@@ -56,6 +62,12 @@ const messages = {
     stepCount: "Steps:",
     custom: "Custom",
     chooseExampleAlgorithm: "Choose example algorithm",
+    howDoesThisWork: "How does this work?",
+    tutorial: {
+      tutorial: "Tutorial",
+      close: "Close",
+      howToUse: "How to use the Simulator",
+    }
   },
 };
 
