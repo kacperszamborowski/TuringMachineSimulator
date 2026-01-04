@@ -66,8 +66,10 @@ const tapeSegments = computed(() =>
           <option value="custom">{{ $t("custom") }}</option>
           <option value="" disabled>{{ $t("one_tape") }}</option>
           <option value="binaryPalindrome1">{{ $t("binaryPalindrome1") }}</option>
+          <option value="evenUnaryNumber">{{ $t("evenUnaryNumber") }}</option>
           <option value="" disabled>{{ $t("two_tapes") }}</option>
           <option value="binaryPalindrome2">{{ $t("binaryPalindrome2") }}</option>
+          <option value="wordLength">{{ $t("wordLength") }}</option>
           <option value="" disabled>{{ $t("three_tapes") }}</option>
           <option value="unaryMultiplication">{{ $t("unaryMultiplication") }}</option>
           <option value="binaryAddition">{{ $t("binaryAddition") }}</option>
