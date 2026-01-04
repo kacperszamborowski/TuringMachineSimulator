@@ -45,7 +45,27 @@ q2,1,1 -> q2,1,1,R,L
 q2,0,0 -> q2,0,0,R,L
 q2,_,_ -> qAccept,_,_,S,S`,
 
-    algorithm3: `// example algorithm 3...`,
+    unaryMultiplication: `//Wejście / input: 111*11
+//3 taśmy / 3 tapes
+init: q0
+accept: qAccept
+
+// 111 * 111
+q0,1,_,_ -> q0,_,_,1,R,S,R
+q0,*,_,_ -> q1,_,_,_,R,S,S
+
+q1,1,_,_ -> q1,_,1,_,R,R,S
+q1,_,_,_ -> q2,_,_,_,S,S,S
+
+q2,_,_,_ -> q2,_,_,_,L,L,L
+q2,_,1,1 -> q2,1,1,1,L,S,L
+q2,_,1,_ -> q3,_,_,_,S,L,R
+q2,1,_,_ -> qAccept,1,_,_,R,S,S
+q2,_,_,1 -> qAccept,_,_,1,R,S,S
+
+q3,_,_,1 -> qAccept,_,_,1,R,S,S
+q3,_,1,1 -> q3,1,1,1,L,S,R
+q3,_,1,_ -> q2,_,_,_,S,L,L`,
 }
 
 export type ExampleKey = keyof typeof algorithms

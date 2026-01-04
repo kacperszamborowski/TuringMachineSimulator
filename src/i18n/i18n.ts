@@ -38,6 +38,7 @@ const messages = {
     three_tapes: "3 taśmy",
     binaryPalindrome1: "Palindrom binarny (1 taśma)",
     binaryPalindrome2: "Palindrom binarny (2 taśmy)",
+    unaryMultiplication: "Mnożenie liczb unarnych",
     howDoesThisWork: "Jak to działa?",
     tutorial: {
       tutorial: "Poradnik",
@@ -114,6 +115,7 @@ const messages = {
     three_tapes: "3 tapes",
     binaryPalindrome1: "Binary palindrome (1 tape)",
     binaryPalindrome2: "Binary palindrome (2 tapes)",
+    unaryMultiplication: "Unary multiplication",
     howDoesThisWork: "How does this work?",
     tutorial: {
       tutorial: "Tutorial",
