@@ -65,9 +65,9 @@ const tapeSegments = computed(() =>
           <option value="" disabled selected>{{ $t("chooseExampleAlgorithm") }}</option>
           <option value="custom">{{ $t("custom") }}</option>
           <option value="" disabled>{{ $t("one_tape") }}</option>
-          <option value="algorithm1">1</option>
+          <option value="binary_palindrome1">{{ $t("binaryPalindrome1") }}</option>
           <option value="" disabled>{{ $t("two_tapes") }}</option>
-          <option value="binary_palindrome">{{ $t("binaryPalindrome") }}</option>
+          <option value="binary_palindrome2">{{ $t("binaryPalindrome2") }}</option>
           <option value="" disabled>{{ $t("three_tapes") }}</option>
           <option value="algorithm3">3</option>
         </select>

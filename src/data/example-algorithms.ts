@@ -1,9 +1,34 @@
 export const algorithms = {
     custom: ``,
 
-    algorithm1: `// example algorithm 1...`,
+    binary_palindrome1: `// Wejście / input: 01110
+// 1 taśma / 1 tape
+init: qInit
+accept: qAccept
 
-    binary_palindrome: `// Wejście / input: 10001
+qInit,0 -> q0R,_,R
+qInit,1 -> q1R,_,R
+qInit,_ -> qAccept,_,S
+
+q0R,0 -> q0R,0,R
+q0R,1 -> q0R,1,R
+q0R,_ -> q0L,_,L
+
+q1R,1 -> q1R,1,R
+q1R,0 -> q1R,0,R
+q1R,_ -> q1L,_,L
+
+q0L,0 -> qReset,_,L
+q0L,_ -> qAccept,_,S
+
+q1L,1 -> qReset,_,L
+q1L,_ -> qAccept,_,S
+
+qReset,0 -> qReset,0,L
+qReset,1 -> qReset,1,L
+qReset,_ -> qInit,_,R`,
+
+    binary_palindrome2: `// Wejście / input: 10001
 // 2 taśmy / 2 tapes
 init: q0
 accept: qAccept

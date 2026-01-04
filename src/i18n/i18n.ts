@@ -36,7 +36,8 @@ const messages = {
     one_tape: "1 taśma",
     two_tapes: "2 taśmy",
     three_tapes: "3 taśmy",
-    binaryPalindrome: "Palindrom binarny",
+    binaryPalindrome1: "Palindrom binarny (1 taśma)",
+    binaryPalindrome2: "Palindrom binarny (2 taśmy)",
     howDoesThisWork: "Jak to działa?",
     tutorial: {
       tutorial: "Poradnik",
@@ -111,7 +112,8 @@ const messages = {
     one_tape: "1 tape",
     two_tapes: "2 tapes",
     three_tapes: "3 tapes",
-    binaryPalindrome: "Binary palindrome",
+    binaryPalindrome1: "Binary palindrome (1 tape)",
+    binaryPalindrome2: "Binary palindrome (2 tapes)",
     howDoesThisWork: "How does this work?",
     tutorial: {
       tutorial: "Tutorial",
