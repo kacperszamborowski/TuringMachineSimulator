@@ -96,7 +96,7 @@ const tapeSegments = computed(() =>
     <div class="tape-container" :style="{ '--anim-speed': machineStore.speed + 'ms' }">
       <div v-for="(cells, tIndex) in tapeSegments" :key="tIndex" class="tape">
         <div class="tape-track-wrapper">
-          <transition-group name="slide" tag="div" class="tape-track">
+          <transition-group :name="machineStore.disableTransitions ? '' : 'slide'" tag="div" class="tape-track">
             <div v-for="cell in cells" :key="cell.id" class="cell"
               :class="{ active: cell === machineStore.machine.tapes[tIndex].head }">
               {{ cell.value }}

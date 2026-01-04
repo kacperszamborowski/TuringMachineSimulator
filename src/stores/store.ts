@@ -21,6 +21,7 @@ export const MachineStore = defineStore('machineStore', () => {
   const stepCount = ref(0)
   const neededTapes = ref(0)
   let errorTimeout: ReturnType<typeof setTimeout> | null = null
+  const disableTransitions = ref(false)
 
   function setError(errCode: string | null, errLine: number | null) {
     errorCode.value = errCode
@@ -56,8 +57,12 @@ export const MachineStore = defineStore('machineStore', () => {
     if (isRunning.value) {
       return
     }
+    disableTransitions.value = true
     machine.tapes.pop()
     numberOfTapes.value = machine.tapes.length
+    requestAnimationFrame(() => {
+      disableTransitions.value = false;
+    })
   }
 
   function resetMachine() {
@@ -188,6 +193,7 @@ export const MachineStore = defineStore('machineStore', () => {
     resetMachine,
     rawSpeed,
     speed,
-    stepCount
+    stepCount,
+    disableTransitions
   }
 })
