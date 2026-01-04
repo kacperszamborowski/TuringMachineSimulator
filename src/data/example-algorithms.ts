@@ -50,22 +50,20 @@ q2,_,_ -> qAccept,_,_,S,S`,
 init: q0
 accept: qAccept
 
-// 111 * 111
 q0,1,_,_ -> q0,_,_,1,R,S,R
 q0,*,_,_ -> q1,_,_,_,R,S,S
 
 q1,1,_,_ -> q1,_,1,_,R,R,S
-q1,_,_,_ -> q2,_,_,_,S,S,S
+q1,_,_,_ -> q2,_,_,_,L,L,L
 
-q2,_,_,_ -> q2,_,_,_,L,L,L
 q2,_,1,1 -> q2,1,1,1,L,S,L
 q2,_,1,_ -> q3,_,_,_,S,L,R
-q2,1,_,_ -> qAccept,1,_,_,R,S,S
-q2,_,_,1 -> qAccept,_,_,1,R,S,S
 
-q3,_,_,1 -> qAccept,_,_,1,R,S,S
 q3,_,1,1 -> q3,1,1,1,L,S,R
-q3,_,1,_ -> q2,_,_,_,S,L,L`,
+q3,_,1,_ -> q2,_,_,_,S,L,L
+
+q2,_,_,1 -> qAccept,_,_,1,R,S,S
+q3,_,_,1 -> qAccept,_,_,1,R,S,S`,
 }
 
 export type ExampleKey = keyof typeof algorithms
