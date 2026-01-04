@@ -5,17 +5,22 @@ const messages = {
     header: "Symulator maszyny Turinga",
     addTape: "Dodaj taśmę",
     removeTape: "Usuń taśmę",
+    duplicateInit: "Znaleziono duplikat \"init\", w linii ",
+    duplicateAccept: "Znaleziono duplikat \"accept\", w linii ",
     invalidRuleMissing: "Niepoprawna reguła (brak '->') w linii ",
     invalidRuleTooMany: "Niepoprawna reguła (więcej niż 1 '->') w linii ",
     invalidRuleInputLength: "Niepoprawna liczba taśm lub symboli wejściowych w linii ",
-    InvalidRuleInputBlank: "Niepoprawna liczba symboli wejściowych (symbol pusty powinien być zapisany jako '_' w linii ",
+    invalidRuleInputBlank: "Niepoprawna liczba symboli wejściowych (symbol pusty powinien być zapisany jako '_' w linii ",
+    invalidRuleInputSymbolLength: "Symbole wejściowe muszą być pojedynczymi znakami, w linii ",
     invalidRuleOutputLength: "Niepoprawna liczba taśm lub symboli wyjściowych w linii ",
     invalidRuleOutputBlank: "Niepoprawna liczba symboli wyjściowych (symbol pusty powinien być zapisany jako '_' w linii ",
+    invalidRuleOutputSymbolLength: "Symbole wyjściowe muszą być pojedynczymi znakami, w linii ",
     invalidRuleOutputMovesLength: "Niepoprawna liczba ruchów w linii ",
     invalidRuleMove: "Niepoprawny ruch (dozwolone ruchy: L, R, S) w linii ",
     invalidComment: "Komentarz musi obejmować całą linię w linii ",
     missingInit: "Brak stanu inicjalizującego: ",
     missingAccept: "Brak stanu akceptującego: ",
+    invalidNumberOfTapes: "Niepoprawna ilość taśm",
     statusState: "Stan:",
     machineStopped: "Zatrzymano",
     machineRunning: "W trakcie",
@@ -46,6 +51,7 @@ const messages = {
         Kolejnym krokiem jest skompilowanie algorytmu - kliknij przycisk <b>'Kompiluj'</b><br />
         Następnie w polu tekstowym <b>'Wejście'</b> trzeba wpisać przykładowe wejście - na przykład <b>10001</b> i kliknąć <b>"Wczytaj"</b><br />
         Teraz pozostaje tylko <b>uruchomić maszynę</b> - kliknij <b>ikonę startu</b> w sekcji sterowania maszyną<br />
+        W tej sekcji jest również dostępny <b>suwak</b>, którym możesz zmienić <b>prędkość</b> działania maszyny<br />
         W prawym górnym rogu widać <b>informacje</b> o stanie maszyny - ilość kroków, aktualny stan i status<br />
         Po zakończeniu działania maszyny, status powinien być 'Sukces', ponieważ 10001 jest palindromem<br />
         Ps: Jeśli pole tekstowe <b>'Wejście'</b> zawiera coś w momencie kliknięcia <b>'Kompiluj'</b>, dane zostaną wczytane automatycznie<br />`,
@@ -74,17 +80,22 @@ const messages = {
     header: "Turing machine simulator",
     addTape: "Add tape",
     removeTape: "Remove tape",
+    duplicateInit: "Duplicate \"init\" found in line ",
+    duplicateAccept: "Duplicate \"accept\" found in line ",
     invalidRuleMissing: "Invalid rule (missing '->') in line ",
     invalidRuleTooMany: "Invalid rule (more than 1 '->') in line ",
     invalidRuleInputLength: "Invalid number of tapes or input symbols in line ",
-    InvalidRuleInputBlank: "Invalid number of input symbols (blank symbol should be written as '_') in line ",
+    invalidRuleInputBlank: "Invalid number of input symbols (blank symbol should be written as '_') in line ",
+    invalidRuleInputSymbolLength: "Input symbols must be single characters in line ",
     invalidRuleOutputLength: "Invalid number of tapes or output symbols in line ",
     invalidRuleOutputBlank: "Invalid number of output symbols (blank symbol should be written as '_') in line ",
+    invalidRuleOutputSymbolLength: "Output symbols must be single characters in line ",
     invalidRuleOutputMovesLength: "Invalid number of moves in line ",
     invalidRuleMove: "Invalid move (allowed moves: L, R, S) in line ",
     invalidComment: "Comment must cover the whole line in line ",
     missingInit: "Initial state missing: ",
     missingAccept: "Accept state missing: ",
+    invalidNumberOfTapes: "Invalid number of tapes",
     statusState: "State:",
     machineStopped: "Stopped",
     machineRunning: "Running",
@@ -115,6 +126,7 @@ const messages = {
         The next step is to compile the algorithm - click the <b>'Compile'</b> button<br />
         Then, in the <b>'Input'</b> field, enter an example input - for instance <b>10001</b> - and click <b>'Load'</b><br />
         Now, you just need to <b>run the machine</b> - click the <b>'play' icon</b> in the machine control section<br />
+        In this section there's also a <b>slider</b> which you can use to adjust the <b>speed</b> of the machine<br />
         In the top-right corner, you can see <b>information</b> about the machine's state - number of steps, current state, and status<br />
         Once the machine finishes running, the status should be 'Success', because 10001 is a palindrome<br />
         Ps: if <b>'Input'</b> field has something inside when <b>'Compile'</b> is clicked, it will input the data automatically<br />`,

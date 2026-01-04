@@ -20,23 +20,25 @@ export const MachineStore = defineStore('machineStore', () => {
   const speed = computed(() => 1000 - rawSpeed.value)
   const stepCount = ref(0)
   const neededTapes = ref(0)
+  let errorTimeout: ReturnType<typeof setTimeout> | null = null
 
   function setError(errCode: string | null, errLine: number | null) {
     errorCode.value = errCode
     errorLine.value = errLine
-    setTimeout(() => {
+
+    if (errorTimeout !== null) {
+      clearTimeout(errorTimeout)
+    }
+
+    errorTimeout = setTimeout(() => {
       clearError()
+      errorTimeout = null;
     }, 5000)
   }
 
   function clearError() {
     errorCode.value = null
     errorLine.value = null
-  }
-
-  function setNumberOfTapes(newNumber: number) {
-    numberOfTapes.value = newNumber
-    machine.tapes = Array.from({ length: newNumber }, () => new TapeClass())
   }
 
   function addTape() {
@@ -134,15 +136,19 @@ export const MachineStore = defineStore('machineStore', () => {
     currentState.value = rule.nextState
   }
 
-  function run() {
+  function run(auto: boolean) {
     if (isRunning.value) return
 
-    while (numberOfTapes.value > neededTapes.value) { //removes unnecessary tapes added after compilation
-      removeTape()
+    while (numberOfTapes.value !== neededTapes.value) {
+      setError("invalidNumberOfTapes", null)
+      return
     }
 
-    while (numberOfTapes.value < neededTapes.value) { //adds missing tapes removed after compilation
-      addTape()
+    clearError()
+
+    if (!auto) {
+      step()
+      return
     }
 
     isRunning.value = true
@@ -163,7 +169,6 @@ export const MachineStore = defineStore('machineStore', () => {
 
   return {
     numberOfTapes,
-    setNumberOfTapes,
     addTape,
     removeTape,
     loadProgram,

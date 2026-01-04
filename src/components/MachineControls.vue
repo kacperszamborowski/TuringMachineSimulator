@@ -9,10 +9,18 @@ const machineStore = MachineStore()
     <AppSection>
         <div class="controls-container">
             <div class="machine-controls">
-                <button @click="machineStore.run()"><i class="fa fa-play" /></button>
-                <button @click="machineStore.step"><i class="fa fa-step-forward" /></button>
-                <button @click="machineStore.stop"><i class="fa fa-pause" /></button>
-                <button @click="machineStore.loadProgram"><i class="fa fa-sync" /></button>
+                <button @click="machineStore.run(true)" :disabled="!machineStore.rules.length">
+                    <i class="fa fa-play" />
+                </button>
+                <button @click="machineStore.run(false)" :disabled="!machineStore.rules.length">
+                    <i class="fa fa-step-forward" />
+                </button>
+                <button @click="machineStore.stop" :disabled="!machineStore.rules.length">
+                    <i class="fa fa-pause" />
+                </button>
+                <button @click="machineStore.loadProgram" :disabled="!machineStore.rules.length">
+                    <i class="fa fa-sync" />
+                </button>
             </div>
             <div class="speed-control">
                 <span class="label">{{ $t("speed") }} </span>

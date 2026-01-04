@@ -39,11 +39,17 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
       continue
 
     if (line.startsWith("init:")) {
+      if (initState !== null) {
+        return { success: false, errorCode: "duplicateInit", lineNumber }
+      }
       initState = line.replace("init:", "").trim()
       continue
     }
 
     if (line.startsWith("accept:")) {
+      if (acceptState !== null) {
+        return { success: false, errorCode: "duplicateAccept", lineNumber }
+      }
       acceptState = line.replace("accept:", "").trim()
       continue
     }
@@ -66,7 +72,10 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
       return { success: false, errorCode: "invalidRuleInputLength", lineNumber }
     }
     if (readSymbolsRaw.some(sym => sym === "")) {
-      return { success: false, errorCode: "InvalidRuleInputBlank", lineNumber }
+      return { success: false, errorCode: "invalidRuleInputBlank", lineNumber }
+    }
+    if (readSymbolsRaw.some(sym => sym.length > 1)) {
+      return { success: false, errorCode: "invalidRuleInputSymbolLength", lineNumber }
     }
     const readSymbols = readSymbolsRaw.map(handleBlank)
 
@@ -80,6 +89,9 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
     }
     if (writeSymbolsRaw.some(sym => sym === "")) {
       return { success: false, errorCode: "invalidRuleOutputBlank", lineNumber }
+    }
+    if (writeSymbolsRaw.some(sym => sym.length > 1)) {
+      return { success: false, errorCode: "invalidRuleOutputSymbolLength", lineNumber }
     }
     if (moves.length !== numTapes) {
       return { success: false, errorCode: "invalidRuleOutputMovesLength", lineNumber }
