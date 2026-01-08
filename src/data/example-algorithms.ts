@@ -29,11 +29,10 @@ qReset,1 -> qReset,1,L
 qReset,_ -> qInit,_,R`,
 
     evenUnaryNumber: `//Wejście / input: 111111
-//1 taśmy / 1 tape
-init: q0
+//1 taśma / 1 tape
+init: q1
 accept: qAccept
 
-q0,1 -> q1,1,S
 q1,1 -> q2,_,R
 q2,1 -> q1,_,R
 q1,_ -> qAccept,_,S`,
@@ -55,28 +54,29 @@ q2,1,1 -> q2,1,1,R,L
 q2,0,0 -> q2,0,0,R,L
 q2,_,_ -> qAccept,_,_,S,S`,
 
-    wordLength: `// Wejście / input: 11111111
+    wordLength: `// Wejście / input: aaaaaaaa
 // 2 taśma / 2 tapes
 init: q0
 accept: qAccept
 
-q0,1,_ -> q1,_,1,R,R
+q0,a,_ -> q1,_,1,R,R
+q0,_,_ -> qAccept,_,0,S,S
 
-q1,1,_ -> q2,_,_,R,S
+q1,a,_ -> q2,_,_,R,S
 q1,_,_ -> qAccept,_,_,S,L
 
-q2,1,_ -> q2,1,_,S,L
-q2,1,0 -> qR,1,1,S,S
-q2,1,1 -> q3,1,0,S,L
+q2,a,_ -> q2,a,_,S,L
+q2,a,0 -> qR,a,1,S,S
+q2,a,1 -> q3,a,0,S,L
 q2,_,_ -> q3,_,_,S,L
 
-qR,1,1 -> qR,1,1,S,R
-qR,1,0 -> qR,1,0,S,R
-qR,1,_ -> q1,1,_,S,S
+qR,a,1 -> qR,a,1,S,R
+qR,a,0 -> qR,a,0,S,R
+qR,a,_ -> q1,a,_,S,S
 
-q3,1,1 -> q3,1,0,S,L
-q3,1,0 -> qR,1,1,S,S
-q3,1,_ -> qR,1,1,S,S
+q3,a,1 -> q3,a,0,S,L
+q3,a,0 -> qR,a,1,S,S
+q3,a,_ -> qR,a,1,S,S
 q3,_,1 -> q3,_,0,S,L
 q3,_,0 -> qAccept,_,1,S,S
 q3,_,_ -> qAccept,_,1,S,S`,
