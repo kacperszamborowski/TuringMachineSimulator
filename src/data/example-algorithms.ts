@@ -113,10 +113,8 @@ q4,1,_,0 -> q2,_,1,0,S,S,S
 q4,1,0,_ -> q2,_,0,1,S,S,S
 q4,1,_,1 -> q2,_,1,1,S,S,S
 q4,1,1,_ -> q2,_,1,1,S,S,S
-q4,1,1,1 -> q5,1,1,1,L,S,S
-q4,1,_,_ -> qAccept,1,_,_,S,S,S
-
-q5,_,1,1 -> q4,1,_,_,S,L,L`,
+q4,1,1,1 -> q3,1,1,1,L,S,S
+q4,1,_,_ -> qAccept,1,_,_,S,S,S`,
 
     unaryMultiplication: `//Wejście / input: 111*11
 //3 taśmy / 3 tapes
