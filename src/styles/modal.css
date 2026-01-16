@@ -27,6 +27,10 @@
   border-bottom: 1px solid #ddd;
 }
 
+.modal-header .success {
+  color: #28a745;
+}
+
 .modal-content {
   padding: 1.25rem;
   overflow-y: auto;

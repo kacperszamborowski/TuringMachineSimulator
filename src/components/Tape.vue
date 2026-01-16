@@ -2,7 +2,7 @@
 import "../styles/tape.css"
 import { Tape as TapeClass, TapeCell } from '../logic/turingMachine'
 import { MachineStore } from "../stores/store"
-import { computed } from "vue"
+import { computed, ref, watch } from "vue"
 import AppSection from "./AppSection.vue"
 import { algorithms, type ExampleKey } from "@/data/example-algorithms"
 
@@ -51,6 +51,17 @@ function getTapeSegment(tape: TapeClass): TapeCell[] {
 const tapeSegments = computed(() =>
   machineStore.machine.tapes.map(tape => getTapeSegment(tape))
 )
+
+const showModal = ref(false)
+watch(() => machineStore.status, (status, prevStatus) => {
+  if (status === 'success' && prevStatus !== 'success') {
+    showModal.value = true
+  }
+})
+
+const result = computed(() => {
+  return machineStore.machine.tapes.map(tape => tape.toArray().join(''))
+})
 </script>
 
 <template>
@@ -109,4 +120,21 @@ const tapeSegments = computed(() =>
       </div>
     </div>
   </AppSection>
+
+  <div v-if="showModal" class="modal-overlay" @click="showModal = false">
+    <div class="modal" @click.stop>
+      <header class="modal-header">
+        <h2 class="success">{{ $t("machineSuccess") }}</h2>
+        <button class="close-btn" @click="showModal = false">{{ $t("tutorial.close") }}</button>
+      </header>
+
+      <div class="modal-content">
+        <div v-for="(tape, tapeIndex) in result" :key="tapeIndex">
+          <h3>{{ $t("tape") }} {{ tapeIndex + 1 }}:</h3>
+          <p v-if="tape">{{ tape }}</p>
+          <p v-else>{{ $t("empty") }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

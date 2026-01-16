@@ -35,6 +35,27 @@ export class Tape {
   writeSymbol(symbol: string) {
     this.head.value = symbol
   }
+
+  toArray(): string[] {
+    let cursor = this.head
+
+    while (cursor.left) {
+      cursor = cursor.left
+    }
+
+    const symbols: string[] = []
+
+    while (cursor) {
+      symbols.push(cursor.value)
+      if (cursor.right) {
+        cursor = cursor.right
+      }
+      else break
+    }
+
+    return symbols
+  }
+
 }
 
 export class TuringMachine {
