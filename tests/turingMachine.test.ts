@@ -72,6 +72,28 @@ describe('Taśma', () => {
 
         expect(tape.head.value).toBe('1')
     })
+
+    test('zwraca wszystkie komórki od lewej do prawej bez ruszania głowicy', () => {
+        const tape = new Tape()
+
+        tape.writeSymbol('A')
+        tape.moveRight()
+        tape.writeSymbol('B')
+        tape.moveRight()
+        tape.writeSymbol('')
+        tape.moveRight()
+        tape.writeSymbol('C')
+        tape.moveLeft()
+        tape.moveLeft()
+
+        const result = tape.toArray()
+
+        expect(result).toHaveLength(4)
+
+        expect(result).toEqual(['A', 'B', '', 'C'])
+
+        expect(tape.head.value).toBe('B')
+    })
 })
 
 describe('Komórki taśmy', () => {
