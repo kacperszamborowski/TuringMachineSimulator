@@ -1,39 +1,23 @@
-# turing-simulator
+# Turing Machine Simulator
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a web-based application for simulating the operation of a multi-tape Turing Machine.
+It allows users to define their own Turing Machine programs, provide input data, and observe the computation process step by step.
 
-## Recommended IDE Setup
+The application is intended primarily as an educational tool to support learning concepts from the theory of computation through interactive visualization.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
+- Support for user-defined Turing Machine programs
+- Multi-tape Turing Machine simulation
+- Step-by-step execution and visualization of tapes
+- Syntax validation and error reporting
+- Client-side execution (no backend)
 
-## Type Support for `.vue` Imports in TS
+## Technologies
+- Vue.js
+- TypeScript
+- Jest (unit testing)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+## Project setup
+```bash
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
