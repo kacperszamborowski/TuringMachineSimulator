@@ -121,6 +121,7 @@ const result = computed(() => {
     </div>
   </AppSection>
 
+  <!-- Modal -->
   <div v-if="showModal" class="modal-overlay" @click="showModal = false">
     <div class="modal" @click.stop>
       <header class="modal-header">

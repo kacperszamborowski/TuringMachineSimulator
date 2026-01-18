@@ -54,6 +54,7 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
       continue
     }
 
+    //Podział reguły na części
     const parts = line.split("->")
     if (parts.length < 2) {
       return { success: false, errorCode: "invalidRuleMissing", lineNumber }
@@ -62,6 +63,7 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
       return { success: false, errorCode: "invalidRuleTooMany", lineNumber }
     }
 
+    //Przetwarzanie lewej strony reguły
     const left = parts[0].trim().split(",")
     const currentState = left[0]
     const readSymbolsRaw = left.slice(1)
@@ -79,6 +81,7 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
     }
     const readSymbols = readSymbolsRaw.map(handleBlank)
 
+    //Przetwarzanie prawej strony reguły
     const right = parts[1].trim().split(",")
     const nextState = right[0]
     const writeSymbolsRaw = right.slice(1, 1 + numTapes)
@@ -107,6 +110,7 @@ export function parseProgram(code: string, numTapes: number): ParseResult {
       }
     }
 
+    //Dodanie reguły do listy
     rules.push({
       currentState,
       readSymbols,

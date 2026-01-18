@@ -21,21 +21,26 @@ export class Tape {
     this.head = new TapeCell('')
   }
 
+  //Ruch w prawo, tworzenie nowych komórek
   moveRight() {
     if (!this.head.right) this.head.right = new TapeCell('', this.head)
     this.head = this.head.right
   }
 
+  //Ruch w lewo, tworzenie nowych komórek
   moveLeft() {
     if (!this.head.left) this.head.left = new TapeCell('', null, this.head)
     this.head.left.right = this.head
     this.head = this.head.left
   }
 
+  //Zapis symbolu
   writeSymbol(symbol: string) {
     this.head.value = symbol
   }
 
+
+  //Konwersja taśmy do tablicy znaków
   toArray(): string[] {
     let cursor = this.head
 

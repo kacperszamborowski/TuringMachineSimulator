@@ -57,11 +57,11 @@ const messages = {
         Ten algorytm działa na 2 taśmach, więc w lewym górnym rogu strony trzeba dodać taśmę klikając na przycisk <b>'Dodaj taśmę'</b><br />
         Kolejnym krokiem jest skompilowanie algorytmu - kliknij przycisk <b>'Kompiluj'</b><br />
         Następnie w polu tekstowym <b>'Wejście'</b> trzeba wpisać przykładowe wejście - na przykład <b>10001</b> i kliknąć <b>"Wczytaj"</b><br />
+        Jeśli pole tekstowe <b>'Wejście'</b> zawiera dane w momencie kliknięcia <b>'Kompiluj'</b>, zostaną one wczytane automatycznie<br />
         Teraz pozostaje tylko <b>uruchomić maszynę</b> - kliknij <b>ikonę startu</b> w sekcji sterowania maszyną<br />
         W tej sekcji jest również dostępny <b>suwak</b>, którym możesz zmienić <b>prędkość</b> działania maszyny<br />
         W prawym górnym rogu widać <b>informacje</b> o stanie maszyny - ilość kroków, aktualny stan i status<br />
-        Po zakończeniu działania maszyny, status powinien być 'Sukces', ponieważ 10001 jest palindromem<br />
-        Ps: Jeśli pole tekstowe <b>'Wejście'</b> zawiera dane w momencie kliknięcia <b>'Kompiluj'</b>, zostaną one wczytane automatycznie<br />`,
+        Po zakończeniu działania maszyny, status powinien być 'Sukces', ponieważ 10001 jest palindromem<br />`,
       howDoesTheCodeWork: "Jak działa kod?",
       howDoesTheCodeWorkContentP1: `
         Spójrzmy na przykładowy algorytm - palindrom binarny (2 taśmy), który można wybrać z <b>menu</b> na górze strony<br />
@@ -139,11 +139,11 @@ const messages = {
         This algorithm works on 2 tapes, so in the top-left corner you need to add a tape by clicking the <b>'Add Tape'</b> button<br />
         The next step is to compile the algorithm - click the <b>'Compile'</b> button<br />
         Then, in the <b>'Input'</b> field, enter an example input - for instance <b>10001</b> - and click <b>'Load'</b><br />
+        If <b>'Input'</b> field has data inside when <b>'Compile'</b> is clicked, it will input the data automatically<br />
         Now, you just need to <b>run the machine</b> - click the <b>'play' icon</b> in the machine control section<br />
         In this section there's also a <b>slider</b> which you can use to adjust the <b>speed</b> of the machine<br />
         In the top-right corner, you can see <b>information</b> about the machine's state - number of steps, current state, and status<br />
-        Once the machine finishes running, the status should be 'Success', because 10001 is a palindrome<br />
-        Ps: if <b>'Input'</b> field has data inside when <b>'Compile'</b> is clicked, it will input the data automatically<br />`,
+        Once the machine finishes running, the status should be 'Success', because 10001 is a palindrome<br />`,
       howDoesTheCodeWork: "How does the code work?",
       howDoesTheCodeWorkContentP1: `
         Let's look at an example algorithm - a binary palindrome (2 tapes), which can be selected from the <b>menu</b> at the top of the page<br />
